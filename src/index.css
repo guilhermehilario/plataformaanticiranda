@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Oswald", "Arial Narrow", Impact, ui-sans-serif, sans-serif;
+
+  /* Paleta de folheto de propaganda: vermelho de tinta, papel envelhecido, preto */
+  --color-brand: #b3171f;
+  --color-brand-dark: #7c0f16;
+  --color-brand-light: #d63426;
+  --color-paper: #f6efe0;
+  --color-paper-dark: #e9dcc3;
+  --color-ink: #1b1411;
+  --color-gold: #ddab3c;
+
+  --shadow-poster: 6px 6px 0 0 var(--color-ink);
+  --shadow-poster-sm: 4px 4px 0 0 var(--color-ink);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-paper font-sans text-ink antialiased;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+}
+
+::selection {
+  @apply bg-brand text-paper;
+}
+
+@layer components {
+  /* Cartões com borda grossa e sombra dura, como cartaz impresso */
+  .poster-card {
+    @apply border-2 border-ink bg-paper shadow-[6px_6px_0_0_var(--color-ink)];
+  }
+
+  .poster-card-sm {
+    @apply border-2 border-ink bg-paper shadow-[4px_4px_0_0_var(--color-ink)];
+  }
+
+  .poster-btn-red {
+    @apply inline-flex items-center justify-center gap-1.5 border-2 border-ink bg-brand px-3 py-2.5 font-display text-[11px] font-semibold uppercase tracking-[0.12em] text-paper shadow-[4px_4px_0_0_var(--color-ink)] transition-all duration-150 hover:bg-brand-dark active:translate-x-[3px] active:translate-y-[3px] active:shadow-none disabled:cursor-not-allowed disabled:opacity-50 sm:gap-2 sm:px-4 sm:text-sm sm:tracking-widest;
+  }
+
+  .poster-btn-dark {
+    @apply inline-flex items-center justify-center gap-1.5 border-2 border-ink bg-ink px-3 py-2.5 font-display text-[11px] font-semibold uppercase tracking-[0.12em] text-paper shadow-[4px_4px_0_0_var(--color-ink)] transition-all duration-150 hover:bg-brand active:translate-x-[3px] active:translate-y-[3px] active:shadow-none disabled:cursor-not-allowed disabled:opacity-50 sm:gap-2 sm:px-4 sm:text-sm sm:tracking-widest;
+  }
+
+  .poster-btn-ghost {
+    @apply inline-flex items-center justify-center gap-1.5 border-2 border-ink bg-paper px-3 py-2.5 font-display text-[11px] font-semibold uppercase tracking-[0.12em] text-ink shadow-[4px_4px_0_0_var(--color-ink)] transition-all duration-150 hover:bg-paper-dark active:translate-x-[3px] active:translate-y-[3px] active:shadow-none disabled:cursor-not-allowed disabled:opacity-50 sm:gap-2 sm:px-4 sm:text-sm sm:tracking-widest;
+  }
+
+  .poster-input {
+    @apply w-full border-2 border-ink bg-paper px-3 py-2.5 text-base text-ink outline-none transition placeholder:text-ink/35 focus:border-brand focus:bg-white focus:shadow-[3px_3px_0_0_var(--color-brand)] sm:text-sm;
+  }
+
+  .poster-label {
+    @apply font-display text-[11px] font-semibold uppercase tracking-[0.14em] text-ink;
+  }
+
+  .poster-tag {
+    @apply inline-flex items-center gap-1 border-2 border-ink px-2 py-0.5 font-display text-[11px] font-semibold uppercase tracking-wider;
+  }
+
+  .poster-kicker {
+    @apply font-display text-[11px] font-semibold uppercase tracking-[0.28em];
+  }
+
+  .poster-heading {
+    @apply font-display font-bold uppercase leading-[0.95] tracking-[0.01em];
+  }
+}
+
+/* Raios de sol saindo do centro, como nos cartazes construtivistas */
+.rays {
+  background-image: repeating-conic-gradient(
+    from 200deg at 82% 118%,
+    rgba(246, 239, 224, 0.16) 0deg 5deg,
+    transparent 5deg 13deg
+  );
+}
+
+.rays-ink {
+  background-image: repeating-conic-gradient(
+    from 190deg at 50% 128%,
+    rgba(27, 20, 17, 0.1) 0deg 5deg,
+    transparent 5deg 14deg
+  );
+}
+
+/* Listras diagonais de faixa de propaganda */
+.stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-brand) 0 10px,
+    var(--color-ink) 10px 20px
+  );
+}
+
+/* Meio-tom de impressão */
+.halftone {
+  background-image: radial-gradient(var(--color-ink) 1px, transparent 1.4px);
+  background-size: 6px 6px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out both;
+}
+
+@keyframes pop {
+  0% {
+    opacity: 0;
+    transform: translate(-3px, -3px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.animate-pop {
+  animation: pop 0.18s ease-out both;
+}
